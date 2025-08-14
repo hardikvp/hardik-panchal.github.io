@@ -23,26 +23,20 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
+    - name: Create deployment directory
+      run: mkdir -p deploy
       
-    - name: Build
-      run: npm run build
-      
-    - name: Copy static assets
+    - name: Copy static files
       run: |
-        cp -r public/* out/ || true
+        cp public/index.html deploy/
+        cp public/hardik-nyc-photo.jpg deploy/
+        cp public/.nojekyll deploy/
+        cp public/404.html deploy/
         
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./out
+        path: ./deploy
 
   deploy:
     environment:
