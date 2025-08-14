@@ -120,4 +120,17 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Ensure images display properly on GitHub Pages */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Fix for Next.js Image component on static exports */
+  .next-image-wrapper {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }

@@ -6,6 +6,8 @@ const nextConfig = {
   assetPrefix: '',
   images: {
     unoptimized: true,
+    loader: 'default',
+    path: '',
   },
   eslint: {
     ignoreDuringBuilds: true,

@@ -1,4 +1,6 @@
-import React from "react"
+"use client"
+
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Linkedin, Twitter, Instagram, ExternalLink, Calendar, MessageCircle } from "lucide-react"
@@ -6,6 +8,13 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function HomePage() {
+  const [imageError, setImageError] = useState(false);
+  
+  // Debug: Log image path for troubleshooting
+  if (typeof window !== 'undefined') {
+    console.log('Image path:', '/hardik-nyc-photo.jpg');
+  }
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -45,14 +54,23 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex-shrink-0">
-            {/* Changed Image to use explicit width and height */}
-	    <Image
-  	      src="/hardik-nyc-photo.jpg"    
-              alt="Hardik - Engineer and Founder"
-              width={450}
-              height={450}
-              className="object-cover rounded-2xl"
-            />
+            {!imageError ? (
+              <Image
+                src="/hardik-nyc-photo.jpg"    
+                alt="Hardik - Engineer and Founder"
+                width={450}
+                height={450}
+                className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
+                priority
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <img
+                src="/hardik-nyc-photo.jpg"
+                alt="Hardik - Engineer and Founder"
+                className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
+              />
+            )}
           </div>
         </div>
       </section>
