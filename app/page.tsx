@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Linkedin, Twitter, Instagram, ExternalLink, Calendar, MessageCircle } from "lucide-react"
@@ -8,11 +8,21 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function HomePage() {
-  const [imageError, setImageError] = useState(false);
-  
   // Debug: Log image path for troubleshooting
   if (typeof window !== 'undefined') {
     console.log('Image path:', '/hardik-nyc-photo.jpg');
+    
+    // GitHub Pages SPA routing fix
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, '',
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
   }
   
   return (
@@ -54,23 +64,30 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex-shrink-0">
-            {!imageError ? (
-              <Image
-                src="/hardik-nyc-photo.jpg"    
-                alt="Hardik - Engineer and Founder"
-                width={450}
-                height={450}
-                className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
-                priority
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <img
-                src="/hardik-nyc-photo.jpg"
-                alt="Hardik - Engineer and Founder"
-                className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
-              />
-            )}
+            <img
+              src="/hardik-nyc-photo.jpg"
+              alt="Hardik - Engineer and Founder"
+              width={450}
+              height={450}
+              className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                console.error('Image failed to load:', target.src);
+                // Try alternative paths if the main path fails
+                if (!target.src.includes('?retry=')) {
+                  target.src = './hardik-nyc-photo.jpg?retry=1';
+                } else if (!target.src.includes('?retry=2')) {
+                  target.src = 'hardik-nyc-photo.jpg?retry=2';
+                } else if (!target.src.includes('?retry=3')) {
+                  // Try with a different path structure
+                  target.src = '../hardik-nyc-photo.jpg?retry=3';
+                } else {
+                  console.error('All image paths failed');
+                  // Show a placeholder or hide the image
+                  target.style.display = 'none';
+                }
+              }}
+            />
           </div>
         </div>
       </section>

@@ -15,6 +15,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Ensure static assets are handled correctly for GitHub Pages
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
 }
 
 export default nextConfig
