@@ -10,7 +10,7 @@ import Link from "next/link"
 export default function HomePage() {
   // Debug: Log image path for troubleshooting
   if (typeof window !== 'undefined') {
-    console.log('Image path:', '/hardik-nyc-photo.jpg');
+    console.log('Image path:', 'hardik-nyc-photo.jpg');
     
     // GitHub Pages SPA routing fix
     (function(l) {
@@ -23,6 +23,10 @@ export default function HomePage() {
         );
       }
     }(window.location))
+    
+    // Preload the image to ensure it's cached
+    const img = new window.Image();
+    img.src = 'hardik-nyc-photo.jpg';
   }
   
   return (
@@ -65,19 +69,20 @@ export default function HomePage() {
           </div>
           <div className="flex-shrink-0">
             <img
-              src="/hardik-nyc-photo.jpg"
+              src="hardik-nyc-photo.jpg"
               alt="Hardik - Engineer and Founder"
               width={450}
               height={450}
               className="object-cover rounded-2xl w-full max-w-[450px] h-auto"
+              loading="eager"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 console.error('Image failed to load:', target.src);
                 // Try alternative paths if the main path fails
                 if (!target.src.includes('?retry=')) {
-                  target.src = './hardik-nyc-photo.jpg?retry=1';
+                  target.src = '/hardik-nyc-photo.jpg?retry=1';
                 } else if (!target.src.includes('?retry=2')) {
-                  target.src = 'hardik-nyc-photo.jpg?retry=2';
+                  target.src = './hardik-nyc-photo.jpg?retry=2';
                 } else if (!target.src.includes('?retry=3')) {
                   // Try with a different path structure
                   target.src = '../hardik-nyc-photo.jpg?retry=3';
