@@ -46,8 +46,8 @@ export default function HomePage() {
           </div>
           <div className="flex-shrink-0">
             {/* Changed Image to use explicit width and height */}
-            <Image
-              src="/hardik-panchal/hardik-nyc-photo.jpg"
+	    <Image
+  	      src="/hardik-nyc-photo.jpg"    
               alt="Hardik - Engineer and Founder"
               width={450}
               height={450}
