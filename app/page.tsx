@@ -169,7 +169,9 @@ export default function HomePage() {
                   With Elexis, recruiters get a smart assistant that goes beyond keywords, analyzing candidate profiles,
                   skills, and behaviors to surface the best-fit talent quickly and fairly. It cuts down time-to-hire by
                   automating initial screening, delivering structured insights, and enabling more meaningful hiring
-                  decisions. In last 180 days, we have helped 44 companies close 300+ positions, signed 1 enterprise client,
+                  decisions. 
+                  
+                  In last 180 days, we have helped 44 companies close 300+ positions, signed 1 enterprise client,
                   and on an average helped reduce time to hire by 60%, saving 30% cost per hire.
                 </p>
                 <Button asChild variant="outline" className="mt-4 bg-transparent">
