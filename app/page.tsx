@@ -144,7 +144,7 @@ export default function HomePage() {
                   based on potential, not pedigree.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  In just 60 days, over 3,000 freshers joined us. This is proof that the problem is real and the need is
+                  In just 60 days, over 6,000 freshers joined us. This is proof that the problem is real and the need is
                   urgent. Saarthi is here to support fresh talent from Tier 3 towns to top campuses. Built for freshers,
                   powered by AI, and designed to walk with you every step of the way.
                 </p>
@@ -169,7 +169,8 @@ export default function HomePage() {
                   With Elexis, recruiters get a smart assistant that goes beyond keywords, analyzing candidate profiles,
                   skills, and behaviors to surface the best-fit talent quickly and fairly. It cuts down time-to-hire by
                   automating initial screening, delivering structured insights, and enabling more meaningful hiring
-                  decisions.
+                  decisions. In last 180 days, we have helped 44 companies close 300+ positions, signed 1 enterprise client,
+                  and on an average helped reduce time to hire by 60%, saving 30% cost per hire.
                 </p>
                 <Button asChild variant="outline" className="mt-4 bg-transparent">
                   <Link href="https://elexis.ai/" target="_blank" rel="noopener noreferrer">
